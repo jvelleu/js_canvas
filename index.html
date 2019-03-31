@@ -48,6 +48,8 @@
 		
 		document.addEventListener("keydown", keyInt);
 		
+		document.addEventListener("orientationchange", canReset);
+		
 		// Reset canvas on resize
 		function canReset() {
 			can.width = can.getBoundingClientRect().width;
