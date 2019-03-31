@@ -37,15 +37,15 @@
 		var sp = 32; // space bar
 		
 		// Listener events
-		can.addEventListener("mousedown", startMouse);
-		can.addEventListener("touchstart", startTouch);
+		can.addEventListener("mousedown", start);
+		can.addEventListener("touchstart", start);
 		
 		can.addEventListener("mouseup", stop);
 		can.addEventListener("touchend", stop);
 		can.addEventListener("touchcancel", stop);
 
-		can.addEventListener("mousemove", drawMouse);
-		can.addEventListener("touchmove", drawTouch);
+		can.addEventListener("mousemove", draw);
+		can.addEventListener("touchmove", draw);
 		
 		document.addEventListener("keydown", keyInt);
 		
@@ -59,42 +59,27 @@
 		}
 		
 		// Start drawing
-		function startMouse(e) {clicked = true; drawMouse(e);}
-		function startTouch(e) {touched = true; drawTouch(e); e.preventDefault();}
+		function start(e) {clicked = true; draw(e); e.preventDefault();}
 
 		// Stop drawing
 		function stop(e) {clicked = false;}
 		
 		// Draw
-		function draw(x,y) {
-			ctx.beginPath();
-			ctx.arc(x, y, rad, 0, 2*Math.PI);
-			ctx.fillStyle = color;
-			ctx.fill();
-			ctx.closePath();
-		}
-		
-		function drawMouse(e) {
+		function draw(e) {
 			// Get x,y offsets
-			let mouseX = e.clientX - can.getBoundingClientRect().left;
-			let mouseY = e.clientY - can.getBoundingClientRect().top;			
+			let x = e.clientX - can.getBoundingClientRect().left;
+			let y = e.clientY - can.getBoundingClientRect().top;			
 			// Drawing loop
-			if (clicked) {draw(mouseX,mouseY)}
-		}
-		
-		function drawTouch(e) {
-			// Get x,y offsets
-			if(e.touches) {
-				if (e.touches.length == 1) {
-					let touch = e.touches[0];
-					let touchX=touch.pageX-touch.target.offsetLeft;
-					let touchY=touch.pageY-touch.target.offsetTop;
-				}
-			}			
-			// Drawing loop
-			if (touched) {draw(touchX,touchY)}
-		}
-		
+			if (clicked) {
+				ctx.beginPath();
+				ctx.arc(x, y, rad, 0, 2*Math.PI);
+				ctx.fillStyle = color;
+				ctx.fill();
+				ctx.closePath();
+				e.preventDefault();
+			}
+		}        
+				
 		// Keyboard interactions
 		function keyInt(e) {
 			// Change colors
