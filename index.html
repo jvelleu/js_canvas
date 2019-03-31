@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Jesse's Canvas</title>
+	<title>Jesse's Canvas x</title>
 	<link rel="stylesheet" type="text/css" href="html5reset.css">
 	<link rel="stylesheet" type="text/css" href="canvas_style.css">
 </head>
@@ -20,6 +20,7 @@
         // Document variables
 		var can = document.querySelector("#canDraw");
 		var ctx = can.getContext("2d");
+		var xMouse,yMouse,xTouch,yTouch;
 		
 		// Default values
 		var clicked = false;
@@ -60,7 +61,7 @@
 		
 		// Start drawing
 		function startMouse(e) {clicked = true; drawMouse(e);}
-		function startTouch(e) {touched = true; drawTouch(e);}
+		function startTouch(e) {touched = true; drawTouch(e); event.preventDefault()}
 
 		// Stop drawing
 		function stop(e) {clicked = false; touched = false;}
@@ -74,25 +75,26 @@
 			ctx.closePath();
 		}
 		
+		// Get mouse position and initiate drawing
 		function drawMouse(e) {
 			// Get x,y offsets
-			let mouseX = e.clientX - can.getBoundingClientRect().left;
-			let mouseY = e.clientY - can.getBoundingClientRect().top;			
+			xMouse = e.clientX - can.getBoundingClientRect().left;
+			yMouse = e.clientY - can.getBoundingClientRect().top;			
 			// Drawing loop
-			if (clicked) {draw(mouseX,mouseY);}
+			if (clicked) {draw(xMouse,yMouse);}
 		}
 		
+		// Get touch position and initiate drawing
 		function drawTouch(e) {
 			// Get x,y offsets
 			if(e.touches) {
 				if (e.touches.length == 1) {
-					let touch = e.touches[0];
-					let touchX=touch.clientX - can.getBoundingClientRect().left;
-					let touchY=touch.clientY - can.getBoundingClientRect().top;	
+					xTouch=e.touches[0].clientX - can.getBoundingClientRect().left;
+					yTouch=e.touches[0].clientY - can.getBoundingClientRect().top;	
 				}
 			}			
 			// Drawing loop
-			if (touched) {e.preventDefault(); draw(touchX,touchY);}
+			if (touched) {draw(xTouch,yTouch); event.preventDefault();}
 			
 		}
 		
