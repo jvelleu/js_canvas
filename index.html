@@ -23,6 +23,7 @@
 		
 		// Default values
 		var clicked = false;
+		var touched = false;
 		var color = "red";
 		var rad = 10;
 		
@@ -59,7 +60,7 @@
 		
 		// Start drawing
 		function start(e) {clicked = true; draw(e);}
-		function startTouch(e) {clicked = true; drawTouch(e);}
+		function startTouch(e) {touched = true; draw(e); event.preventDefault();}
 
 		// Stop drawing
 		function stop(e) {clicked = false;}
@@ -71,30 +72,15 @@
 			let y = e.clientY - can.getBoundingClientRect().top;
 			
 			// Drawing loop
-			if (clicked) {
+			if (clicked || touched) {
 				ctx.beginPath();
 				ctx.arc(x, y, rad, 0, 2*Math.PI);
 				ctx.fillStyle = color;
 				ctx.fill();
 				ctx.closePath();
 			}
+			if (touched) {event.preventDefault();}
 		}        
- 		
-		function drawTouch(e) {
-			// Get x,y offsets            
-			let x = e.clientX - can.getBoundingClientRect().left;
-			let y = e.clientY - can.getBoundingClientRect().top;
-			
-			// Drawing loop
-			if (clicked) {
-				ctx.beginPath();
-				ctx.arc(x, y, rad, 0, 2*Math.PI);
-				ctx.fillStyle = color;
-				ctx.fill();
-				ctx.closePath();
-			}
-			event.preventDefault();
-		}  
 		
 		// Keyboard interactions
 		function keyInt(e) {
