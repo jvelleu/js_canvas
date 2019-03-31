@@ -60,7 +60,7 @@
 		
 		// Start drawing
 		function start(e) {clicked = true; draw(e);}
-		function startTouch(e) {touched = true; draw(e); event.preventDefault();}
+		function startTouch(e) {touched = true; draw(e); e.preventDefault();}
 
 		// Stop drawing
 		function stop(e) {clicked = false;}
@@ -79,7 +79,7 @@
 				ctx.fill();
 				ctx.closePath();
 			}
-			if (touched) {event.preventDefault();}
+			if (touched) {e.preventDefault();}
 		}        
 		
 		// Keyboard interactions
