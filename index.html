@@ -9,7 +9,7 @@
 
 <body onResize="canReset()" onLoad="canReset()">
   	<div>
-		<h1>Jesse's Canvas test5</h1>
+		<h1>Jesse's Canvas test6</h1>
 	</div>
 	
 	<canvas id="canDraw">
@@ -79,7 +79,7 @@
 			let mouseX = e.clientX - can.getBoundingClientRect().left;
 			let mouseY = e.clientY - can.getBoundingClientRect().top;			
 			// Drawing loop
-			if (clicked) {draw(mouseX,mouseY)}
+			if (clicked) {draw(mouseX,mouseY);}
 		}
 		
 		function drawTouch(e) {
@@ -92,7 +92,7 @@
 				}
 			}			
 			// Drawing loop
-			if (touched) {draw(touchX,touchY)}
+			if (touched) {e.preventDefault(); draw(touchX,touchY);}
 			
 		}
 		
