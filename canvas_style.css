@@ -4,7 +4,6 @@
 canvas{
 	border: solid 1px black;
 	display: block;
-	margin: auto;
 }
 
 h1{
@@ -34,5 +33,6 @@ p{
 	canvas{
 		width: 80vw;
 		height: 80vh;
+		margin: auto;
 	}
 }
