@@ -37,7 +37,7 @@
 		
 		// Listener events
 		can.addEventListener("mousedown", start);
-		can.addEventListener("touchstart", start);
+		can.addEventListener("touchstart", startTouch);
 		
 		can.addEventListener("mouseup", stop);
 		can.addEventListener("touchend", stop);
@@ -59,7 +59,8 @@
 		
 		// Start drawing
 		function start(e) {clicked = true; draw(e);}
-        
+		function startTouch(e) {clicked = true; drawTouch(e);}
+
 		// Stop drawing
 		function stop(e) {clicked = false;}
 		
