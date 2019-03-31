@@ -9,7 +9,7 @@
 
 <body onResize="canReset()" onLoad="canReset()">
   	<div>
-		<h1>Jesse's Canvas test</h1>
+		<h1>Jesse's Canvas test2</h1>
 	</div>
 	
 	<canvas id="canDraw">
@@ -87,12 +87,13 @@
 			if(e.touches) {
 				if (e.touches.length == 1) {
 					let touch = e.touches[0];
-					let touchX=touch.pageX-touch.target.offsetLeft;
-					let touchY=touch.pageY-touch.target.offsetTop;
+					let touchX=touch.clientX-touch.target.offsetLeft;
+					let touchY=touch.clientY-touch.target.offsetTop;
 				}
 			}			
 			// Drawing loop
 			if (touched) {draw(touchX,touchY), e.preventDefault()}
+			e.preventDefault()
 		}
 		
 		// Keyboard interactions
