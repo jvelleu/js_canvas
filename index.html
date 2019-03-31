@@ -59,8 +59,7 @@
 		}
 		
 		// Start drawing
-		function start(e) {clicked = true; draw(e);}
-		function start(e) {touched = true; draw(e);}
+		function start(e) {clicked = true; draw(e); e.preventDefault();}
 
 		// Stop drawing
 		function stop(e) {clicked = false;}
@@ -68,13 +67,10 @@
 		// Draw
 		function draw(e) {
 			// Get x,y offsets
-			if (clicked) {
-				let x = e.clientX - can.getBoundingClientRect().left;
-				let y = e.clientY - can.getBoundingClientRect().top;
-			}
-			
+			let x = e.clientX - can.getBoundingClientRect().left;
+			let y = e.clientY - can.getBoundingClientRect().top;			
 			// Drawing loop
-			if (clicked || touched) {
+			if (clicked) {
 				ctx.beginPath();
 				ctx.arc(x, y, rad, 0, 2*Math.PI);
 				ctx.fillStyle = color;
