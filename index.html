@@ -87,8 +87,8 @@
 			if(e.touches) {
 				if (e.touches.length == 1) {
 					let touch = e.touches[0];
-					let touchX=touch.clientX-touch.target.offsetLeft;
-					let touchY=touch.clientY-touch.target.offsetTop;
+					let touchX=touch.clientX - can.getBoundingClientRect().left;
+					let touchY=touch.clientY - can.getBoundingClientRect().top;	
 				}
 			}			
 			// Drawing loop
