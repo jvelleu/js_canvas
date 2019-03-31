@@ -7,12 +7,12 @@
 	<link rel="stylesheet" type="text/css" href="canvas_style.css">
 </head>
 
-<body onResize="canReset()" onLoad="canReset()">
-  	<div>
+<body onResize="canReset()" onLoad="canReset()" class="mainGrid">
+  	<div class="headArea">
 		<h1>Jesse's Canvas</h1>
 	</div>
 	
-	<canvas id="canDraw">
+	<canvas class="canArea" id="canDraw">
  		Your current browser does not support this canvas
   	</canvas>
 
@@ -98,24 +98,47 @@
 			
 		}
 		
+		// Color selector
+		function colorSelect(newColor) {color = newColor;}
+		
+		// Pen size
+		function plus() {
+			rad += 1; 
+		}
+		
+		function minus() {
+			rad -= 1; 
+			if (rad <= 1) {rad = 1;}
+		}
+		
 		// Keyboard interactions
 		function keyInt(e) {
 			// Change colors
-			if ((e.keyCode == r) || (e.which == r)) {color = "red";}
-			if ((e.keyCode == g) || (e.which == g)) {color = "green";}
-			if ((e.keyCode == b) || (e.which == b)) {color = "blue";}
-			if ((e.keyCode == y) || (e.which == y)) {color = "yellow";}
+			if ((e.keyCode == r) || (e.which == r)) {colorSelect("red")}
+			if ((e.keyCode == g) || (e.which == g)) {colorSelect("green");}
+			if ((e.keyCode == b) || (e.which == b)) {colorSelect("blue");}
+			if ((e.keyCode == y) || (e.which == y)) {colorSelect("yellow")}
 			// Change pen size
-			if ((e.keyCode == up) || (e.which == up)) {rad += 1; e.preventDefault();}
-			if ((e.keyCode == dn) || (e.which == dn)) {rad -= 1; if (rad <= 1) {rad = 1;}; e.preventDefault();}
+			if ((e.keyCode == up) || (e.which == up)) {plus(); e.preventDefault();}
+			if ((e.keyCode == dn) || (e.which == dn)) {minus(); e.preventDefault();}
 			// Clear canvas
 			if ((e.keyCode == sp) || (e.which == sp)) {canReset(); e.preventDefault();}
 		}
 	</script>
+	<!--Touch/Mouse Controls-->	
+	<div class="contArea">
+		<button onclick="colorSelect('red')" class="controls-item red">Red</button>
+		<button onclick="colorSelect('blue')" class="controls-item blue">Blue</button>
+		<button onclick="colorSelect('green')" class="controls-item green">Green</button>
+		<button onclick="colorSelect('yellow')" class="controls-item yellow">Yellow</button>
+		<button onclick="plus()" class="controls-item">+ Pen Size</button>
+		<button onclick="minus()" class="controls-item">- Pen Size</button>
+		<button onclick="canReset()" class="controls-item">Clear</button>
+	</div>
 	
-	<div>
-	<!--Instructions-->
-	  <h1>Controls</h1>
+	<!--Keyboard Controls-->
+	<div class="instArea">
+	  <h1>Key Controls</h1>
 		<p>Up/down arrows = Increase/decrease pen size</p>
 		<p>Space = Clear canvas</p>
 		<p>R = Red</p>

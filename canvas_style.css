@@ -1,27 +1,73 @@
 @charset "UTF-8";
 /* CSS Document */
 
-canvas{
+canvas {
 	border: solid 1px black;
 	display: block;
 	width: 80vw;
 	height: 80vh;
-	margin: auto;
 	touch-action: none;
 }
 
-h1{
+h1 {
 	font-family: sans-serif;
 	font-size: 14;
-	margin-left: 10vw;
+	margin-left: auto;
 	line-height: 1.5em;
 	user-select: none;
 }
 
-p{
+p {
 	font-family: sans-serif;
 	font-size: 14;
-	margin-left: 10vw;
+	margin-left: auto;
 	line-height: 1.5em;
 	user-select: none;
 }
+
+li {
+	list-style: none;
+}
+
+.mainGrid {
+	display: grid;
+	grid-template-rows: auto auto auto;
+	grid-template-areas: 
+		".	headArea	."
+		".	canArea 	contArea"
+		".	instArea	.";
+		
+}
+
+.headArea {
+	grid-area: headArea;
+}
+
+.canArea {
+	grid-area: canArea;
+}
+
+.contArea {
+	grid-area: contArea;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 10vw;
+}
+
+.instArea {
+	grid-area: instArea;
+}
+
+.controls-item {
+	width: 10vw;
+	height: 10vh;
+	justify-content: center;
+	border: solid 1px black;
+}
+
+.red {background-color: red}
+.blue {background-color: blue}
+.green {background-color: green}
+.yellow {background-color: yellow}
