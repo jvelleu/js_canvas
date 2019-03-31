@@ -44,7 +44,7 @@
 		can.addEventListener("touchcancel", stop);
 
 		can.addEventListener("mousemove", draw);
-		can.addEventListener("touchmove", draw);
+		can.addEventListener("touchmove", drawTouch);
 		
 		document.addEventListener("keydown", keyInt);
 		
@@ -79,6 +79,22 @@
 			}
 		}        
  		
+		function drawTouch(e) {
+			// Get x,y offsets            
+			let x = e.clientX - can.getBoundingClientRect().left;
+			let y = e.clientY - can.getBoundingClientRect().top;
+			
+			// Drawing loop
+			if (clicked) {
+				ctx.beginPath();
+				ctx.arc(x, y, rad, 0, 2*Math.PI);
+				ctx.fillStyle = color;
+				ctx.fill();
+				ctx.closePath();
+			}
+			event.preventDefault();
+		}  
+		
 		// Keyboard interactions
 		function keyInt(e) {
 			// Change colors
