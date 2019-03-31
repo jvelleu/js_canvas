@@ -23,7 +23,6 @@
 		
 		// Default values
 		var clicked = false;
-		var touched = false;
 		var color = "red";
 		var rad = 10;
 		
@@ -38,14 +37,14 @@
 		
 		// Listener events
 		can.addEventListener("mousedown", start);
-		can.addEventListener("touchstart", startTouch);
+		can.addEventListener("touchstart", start);
 		
 		can.addEventListener("mouseup", stop);
 		can.addEventListener("touchend", stop);
 		can.addEventListener("touchcancel", stop);
 
 		can.addEventListener("mousemove", draw);
-		can.addEventListener("touchmove", drawTouch);
+		can.addEventListener("touchmove", draw);
 		
 		document.addEventListener("keydown", keyInt);
 		
@@ -60,7 +59,6 @@
 		
 		// Start drawing
 		function start(e) {clicked = true; draw(e);}
-		function startTouch(e) {touched = true; draw(e); e.preventDefault();}
 
 		// Stop drawing
 		function stop(e) {clicked = false;}
@@ -72,14 +70,15 @@
 			let y = e.clientY - can.getBoundingClientRect().top;
 			
 			// Drawing loop
-			if (clicked || touched) {
+			if (clicked) {
 				ctx.beginPath();
 				ctx.arc(x, y, rad, 0, 2*Math.PI);
 				ctx.fillStyle = color;
 				ctx.fill();
 				ctx.closePath();
+				e.preventDefault();
 			}
-			if (touched) {e.preventDefault();}
+			
 		}        
 		
 		// Keyboard interactions
