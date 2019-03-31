@@ -9,7 +9,7 @@
 
 <body onResize="canReset()" onLoad="canReset()">
   	<div>
-		<h1>Jesse's Canvas test6</h1>
+		<h1>Jesse's Canvas</h1>
 	</div>
 	
 	<canvas id="canDraw">
@@ -63,7 +63,7 @@
 		function startTouch(e) {touched = true; drawTouch(e);}
 
 		// Stop drawing
-		function stop(e) {clicked = false;}
+		function stop(e) {clicked = false; touched = false;}
 		
 		// Draw
 		function draw(x,y) {
@@ -104,10 +104,10 @@
 			if ((e.keyCode == b) || (e.which == b)) {color = "blue";}
 			if ((e.keyCode == y) || (e.which == y)) {color = "yellow";}
 			// Change pen size
-			if ((e.keyCode == up) || (e.which == up)) {rad += 1;e.preventDefault();}
-			if ((e.keyCode == dn) || (e.which == dn)) {rad -= 1;if (rad <= 1) {rad = 1;}e.preventDefault();}
+			if ((e.keyCode == up) || (e.which == up)) {rad += 1; e.preventDefault();}
+			if ((e.keyCode == dn) || (e.which == dn)) {rad -= 1; if (rad <= 1) {rad = 1;}; e.preventDefault();}
 			// Clear canvas
-			if ((e.keyCode == sp) || (e.which == sp)) {canReset();}
+			if ((e.keyCode == sp) || (e.which == sp)) {canReset(); e.preventDefault();}
 		}
 	</script>
 	
