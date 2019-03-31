@@ -14,6 +14,7 @@ h1{
 	font-size: 14;
 	margin-left: 10vw;
 	line-height: 1.5em;
+	user-select: none;
 }
 
 p{
@@ -21,4 +22,5 @@ p{
 	font-size: 14;
 	margin-left: 10vw;
 	line-height: 1.5em;
+	user-select: none;
 }
